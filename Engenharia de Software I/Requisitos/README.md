@@ -1,4 +1,4 @@
-# Diagrama de caso de uso
+# Diagrama de caso de uso (03/03/2022)
 <img src = "https://github.com/AnaCarolinaNeves/Bertoti/blob/main/Engenharia%20de%20Software%20I/Requisitos/funcional.jpg" height='400'>
 
 <br>
