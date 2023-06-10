@@ -28,14 +28,6 @@ public class Controller implements controllerInterface{
 		System.out.println("Música parou");
 		view.desabilitarBotaoParar();
 		view.habilitarBotaoTocar();
-//		view.desabilitarBotaoAvancar();
 		
 	}
-	
-//	public void avancar() {
-//		model.avancarMusica();
-//		System.out.println("Próxima música");
-//		view.habilitarBotaoAvancar();
-//	}
-	
 }

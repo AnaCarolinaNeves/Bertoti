@@ -1,5 +1,8 @@
 package mvc;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 public class ControllerTrial implements controllerInterface{
 
 	View view;
@@ -19,7 +22,13 @@ public class ControllerTrial implements controllerInterface{
 		System.out.println("Música tocando");
 		view.desabilitarBotaoTocar();
 		view.habilitarBotaoParar();	
-
+		
+		final Timer timerParar = new Timer();
+		timerParar.schedule(new TimerTask() {
+			public void run() {
+				parar();
+			}
+		}, 20000);
 	}
 	
 	public void parar(){
@@ -27,14 +36,6 @@ public class ControllerTrial implements controllerInterface{
 		model.removeObserver(view);
 		System.out.println("Música parou");
 		view.desabilitarBotaoParar();
-//		view.desabilitarBotaoAvancar();
 		
 	}
-	
-//	public void avancar() {
-//		
-//		model.avancarMusica();
-//		System.out.println("Avançar música");
-//		view.habilitarBotaoAvancar();
-//	}
 }

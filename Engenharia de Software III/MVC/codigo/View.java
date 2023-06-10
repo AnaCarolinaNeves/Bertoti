@@ -25,7 +25,6 @@ public class View implements ActionListener, Observer {
 	JLabel musText;
 	JLabel albText;
 	JButton tocar;
-//	JButton avancar;
 	JButton cancelar;
 	
 	public View(Subject mo, controllerInterface co) {
@@ -43,22 +42,18 @@ public class View implements ActionListener, Observer {
 		panelMus = new JPanel();
 		panelAlb = new JPanel();
 		tocar = new JButton("Escutar Música");
-//		avancar = new JButton("Próxima música");
 		cancelar = new JButton("Parar Música");
 		labelBand = new JLabel();
 		labelMus = new JLabel();
 		labelAlb = new JLabel();
-		bandText = new JLabel("Banda");
-		musText = new JLabel("Nome da música");
-		albText = new JLabel("Álbum");
-		
+		bandText = new JLabel("Banda:");
+		musText = new JLabel("Nome da música:");
+		albText = new JLabel("Álbum:");
 		
 		tocar.addActionListener(this);
-//		avancar.addActionListener(this);
 		cancelar.addActionListener(this);
 		
 		panelBotoes.add(tocar);
-//		panelBotoes.add(avancar);
 		panelBotoes.add(cancelar);
 		panelBand.add(bandText);
 		panelBand.add(labelBand);
@@ -110,15 +105,6 @@ public class View implements ActionListener, Observer {
 		
 	}
 	
-//	public void habilitarBotaoAvancar() {
-//		avancar.setEnabled(true);
-//	}
-//	
-//	public void desabilitarBotaoAvancar() {
-//		avancar.setEnabled(false);
-//	}
-	
-	
 	public void habilitarBotaoParar(){
 		
 		cancelar.setEnabled(true);
@@ -138,9 +124,6 @@ public class View implements ActionListener, Observer {
 		if (event.getSource() == cancelar){
 				controller.parar();
 		}
-//		if(event.getSource() == avancar) {
-//			controller.avancar();
-//		}
 	}
 }
 

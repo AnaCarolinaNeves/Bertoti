@@ -1,40 +1,42 @@
 package mvc;
 
 import java.util.ArrayList;
-
-
-
-import java.util.*;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class Model implements Subject {
-	private ArrayList observers;
+	private static Model instance;
+	private ArrayList<Observer> observers;
 	private String banda;
 	private String nomeMusica;
 	private String album;
 	
-	public Model() {
-		observers = new ArrayList();
+	private Model() {
+		observers = new ArrayList<>();
 	}
 	
-	public void registerObserver(Observer o) {
-		observers.add(o);
-	}
-	
-	public void removeObserver(Observer o) {
-		int i = observers.indexOf(o);
-		if (i >= 0) {
-			observers.remove(i);
+	public static synchronized Model getInstance() {
+		if(instance == null) {
+			instance = new Model();
 		}
+		return instance;
+	}
+	
+	public void registerObserver(Observer obs) {
+		observers.add(obs);
+	}
+	
+	public void removeObserver(Observer obs) {
+		observers.remove(obs);
 	}
 	
 	public void notifyObservers() {
-		for (int i = 0; i < observers.size(); i++) {
-			Observer observer = (Observer)observers.get(i);
+		for (Observer observer : observers) {
 			observer.update(banda, nomeMusica, album);
 		}
 	}
 	
-	public void measurementsChanged() {
+	public void songChanged() {
 		notifyObservers();
 	}
 	
@@ -42,7 +44,7 @@ public class Model implements Subject {
 		this.banda = banda;
 		this.nomeMusica = nomeMusica;
 		this.album = album;
-		measurementsChanged();
+		songChanged();
 	}
 	
 	public String getBanda() {
@@ -55,5 +57,15 @@ public class Model implements Subject {
 	
 	public String getAlbum() {
 		return album;
+	}
+	
+	public static void playlist(final String banda, final String nomeMusica, final String album, long delay) {
+		Timer timer = new Timer();
+		timer.schedule(new TimerTask() {
+			public void run() {
+				Model model = Model.getInstance();
+				model.setPlayer(banda, nomeMusica, album);
+			}
+		}, delay);
 	}
 }
